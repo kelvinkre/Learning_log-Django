@@ -21,7 +21,7 @@ def register(request):
         if form.is_valid():
             new_user = form.save()
             # Faz login do usuário e o redireciona para a página inicial
-            authenticated_user = authenticate(user = new_user.username, password = request.POST['password1'])
+            authenticated_user = authenticate(request, username = new_user.username, password = request.POST['password1'])
             login(request, authenticated_user)
             return HttpResponseRedirect(reverse('index'))
     context = {'form': form}
